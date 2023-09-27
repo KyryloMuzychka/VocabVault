@@ -21,6 +21,8 @@ class AddWord() {
      * @throws ExistingWordException if [wordbook] has [word]
      */
     fun addWord(dictionary: WordBook, word: Word) {
+        val amount = dictionary.getAmountOfWords()
+
         if (word.originalWord.isBlank()) {
             throw EmptyFieldException("original word")
         }
@@ -32,12 +34,6 @@ class AddWord() {
         }
         dictionary.getAllWords().add(word)
 
-        assert(!word.originalWord.isBlank() && !word.translatedWord.isBlank()) {
-            "Word cannot be empty."
-        }
-
-        assert(!dictionary.getAllWords().any { it.originalWord == word.originalWord }) {
-            "Word already exists."
-        }
+        assert(amount + 1 == dictionary.getAmountOfWords())
     }
 }
