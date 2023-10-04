@@ -36,14 +36,14 @@ class TestWords {
         // перевіряємо, щоб кількість слів була 0
         Assert.assertEquals(0, dictionary.getAmountOfWords())
 
-        add.addWord(dictionary, word1)
+        add.addWord(dictionary, word1.originalWord, word1.translatedWord)
 
         // перевіряємо, щоб кількість слів була 1
         Assert.assertEquals(1, dictionary.getAmountOfWords())
 
         // додаємо таке саме слово вдруге
         try {
-            add.addWord(dictionary, word1)
+            add.addWord(dictionary, word1.originalWord, word1.translatedWord)
         } catch(ex: ExistingWordException) {
             println(ex)
         }
@@ -59,43 +59,52 @@ class TestWords {
         // перевіряємо, щоб кількість слів була 0
         Assert.assertEquals(0, dictionary.getAmountOfWords())
 
-        add.addWord(dictionary, word1)
+        add.addWord(dictionary, word1.originalWord, word1.translatedWord)
 
         // перевіряємо, щоб кількість слів була 1
         Assert.assertEquals(1, dictionary.getAmountOfWords())
 
         // додаємо слово без заповнених полів
         try {
-            add.addWord(dictionary, word2)
+            add.addWord(dictionary, word2.originalWord, word2.translatedWord)
         } catch(ex: EmptyFieldException) {
             println(ex)
         }
     }
 
+    /**
+     * Перевіряє додавання слова з пустими полями
+     * Результат: Зʼявляється виключення
+     * [EmptyFieldException]
+     */
     @Test
     fun test_AddWord_EmptyTranslatedWord() {
         // перевіряємо, щоб кількість слів була 0
         Assert.assertEquals(0, dictionary.getAmountOfWords())
 
-        add.addWord(dictionary, word1)
+        add.addWord(dictionary, word1.originalWord, word1.translatedWord)
 
         // перевіряємо, щоб кількість слів була 1
         Assert.assertEquals(1, dictionary.getAmountOfWords())
 
         // додаємо слово без заповнених полів
         try {
-            add.addWord(dictionary, word3)
+            add.addWord(dictionary, word3.originalWord, word3.translatedWord)
         } catch(ex: EmptyFieldException) {
             println(ex)
         }
     }
 
+    /**
+     * Перевіряє додавання слова
+     * Результат: Слово додане та виведене на екран
+     */
     @Test
     fun test_AddWord_Successful() {
         // перевіряємо, щоб кількість слів була 0
         Assert.assertEquals(0, dictionary.getAmountOfWords())
 
-        add.addWord(dictionary, word1)
+        add.addWord(dictionary, word1.originalWord, word1.translatedWord)
 
         // перевіряємо, щоб кількість слів була 1
         Assert.assertEquals(1, dictionary.getAmountOfWords())

@@ -20,18 +20,19 @@ class AddWord() {
      * @throws EmptyFieldException if [originalWord] or [translatedWord] == ""
      * @throws ExistingWordException if [wordbook] has [word]
      */
-    fun addWord(dictionary: WordBook, word: Word) {
+    fun addWord(dictionary: WordBook, originalWord: String, translatedWord: String) {
         val amount = dictionary.getAmountOfWords()
 
-        if (word.originalWord.isBlank()) {
+        if (originalWord.isBlank()) {
             throw EmptyFieldException("original word")
         }
-        if (word.translatedWord.isBlank()) {
+        if (translatedWord.isBlank()) {
             throw EmptyFieldException("translated word")
         }
-        if (dictionary.getAllWords().any { it.originalWord == word.originalWord }) {
-            throw ExistingWordException(word.originalWord)
+        if (dictionary.getAllWords().any { it.originalWord == originalWord }) {
+            throw ExistingWordException(originalWord)
         }
+        val word = Word(originalWord, translatedWord)
         dictionary.getAllWords().add(word)
 
         assert(amount + 1 == dictionary.getAmountOfWords())

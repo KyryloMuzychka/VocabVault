@@ -10,6 +10,7 @@ import com.example.vocabvault.domain.AddWord
 import com.example.vocabvault.domain.Word
 import com.example.vocabvault.domain.WordAdapter
 import com.example.vocabvault.domain.WordBook
+import com.example.vocabvault.domain.WordFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,10 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var addButton: Button
     private lateinit var listView: ListView
     private lateinit var background: View
-
-    private lateinit var dictionary: WordBook
-    private lateinit var insert: AddWord
-    private lateinit var adapter: WordAdapter
     private lateinit var translatedWordEdit: EditText
     private lateinit var originalWordEdit: EditText
 
@@ -37,12 +34,10 @@ class MainActivity : AppCompatActivity() {
         listView = findViewById<ListView>(R.id.wordsListView)
         background = findViewById<View>(R.id.background)
         translatedWordEdit = findViewById<EditText>(R.id.translatedWordEdit)
-        originalWordEdit = findViewById<EditText>(R.id.originalWordEdit)
+        originalWordEdit = findViewById<EditText>( R.id.originalWordEdit)
 
-        dictionary = WordBook()
-        insert = AddWord()
-        adapter = WordAdapter(this, R.layout.list_item_layout, dictionary.getAllWords())
-        listView.adapter = adapter
+        WordFactory.adapter = WordAdapter(this, R.layout.list_item_layout, WordFactory.dictionary.getAllWords())
+        listView.adapter = WordFactory.adapter
     }
 
     private fun setupUI() {
@@ -62,9 +57,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addWord(originalWord: String, translatedWord: String) {
-        val word = Word(originalWord, translatedWord)
-        insert.addWord(dictionary, word)
-        adapter.notifyDataSetChanged()
+        WordFactory.insert.addWord(WordFactory.dictionary, originalWord, translatedWord)
+        WordFactory.adapter.notifyDataSetChanged()
     }
 
     private fun clearEdits() {
