@@ -89,4 +89,23 @@ class TestWords {
             println(ex)
         }
     }
+
+    @Test
+    fun test_AddWord_Successful() {
+        // перевіряємо, щоб кількість слів була 0
+        Assert.assertEquals(0, dictionary.getAmountOfWords())
+
+        add.addWord(dictionary, word1)
+
+        // перевіряємо, щоб кількість слів була 1
+        Assert.assertEquals(1, dictionary.getAmountOfWords())
+
+        // Перевіряємо, що слово "apple" дійсно додане до словника з правильним перекладом "яблоко"
+        val addedWord = dictionary.getAllWords().find { it.originalWord == word1.originalWord }
+
+        Assert.assertNotNull(addedWord)
+        Assert.assertEquals(word1.translatedWord, addedWord?.translatedWord)
+
+        println(addedWord)
+    }
 }
