@@ -5,14 +5,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.vocabvault.domain.AddWord
-import com.example.vocabvault.domain.Word
 import com.example.vocabvault.domain.WordAdapter
-import com.example.vocabvault.domain.WordBook
 import com.example.vocabvault.domain.WordFactory
 
 class MainActivity : AppCompatActivity() {
+
+
 
     private var windowDisplayed = false
 
@@ -22,11 +22,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var translatedWordEdit: EditText
     private lateinit var originalWordEdit: EditText
 
+    private lateinit var test: TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Initialize()
         setupUI()
+
     }
 
     private fun Initialize() {
