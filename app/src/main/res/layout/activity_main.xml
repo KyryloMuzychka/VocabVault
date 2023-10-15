@@ -26,7 +26,7 @@
         <View
             android:id="@+id/background"
             android:layout_width="wrap_content"
-            android:layout_height="600dp"
+            android:layout_height="250dp"
             android:background="#FFFFFF"
             android:visibility="@{viewModel.visibility}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +35,7 @@
 
         <EditText
             android:id="@+id/originalWordEdit"
-
+            android:text="@{viewModel.originalWordText}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/background"
@@ -73,6 +73,7 @@
             android:inputType="text"
             android:minHeight="48dp"
             android:visibility="@{viewModel.visibility}"
+            android:text="@{viewModel.translatedWordText}"
             app:layout_constraintBottom_toTopOf="@+id/addButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,6 +88,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
             android:gravity="center"
+            android:onClick="@{() -> viewModel.onAdd()}"
             android:text="@{viewModel.addText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
