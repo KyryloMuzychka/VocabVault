@@ -7,6 +7,9 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.example.vocabvault.databinding.ActivityMainBinding
 import com.example.vocabvault.domain.WordAdapter
 import com.example.vocabvault.domain.WordFactory
 
@@ -22,12 +25,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var translatedWordEdit: EditText
     private lateinit var originalWordEdit: EditText
 
-    private lateinit var test: TextView
-
+    private lateinit var mainViewModel : MainViewModel
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        this.mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.lifecycleOwner = this
+
+        binding.viewModel = this.mainViewModel
+
         Initialize()
         setupUI()
 
