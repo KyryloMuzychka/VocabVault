@@ -5,9 +5,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.vocabvault.databinding.ActivityMainBinding
 import com.example.vocabvault.domain.WordAdapter
@@ -31,13 +31,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        this.mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.lifecycleOwner = this
 
         binding.viewModel = this.mainViewModel
+
+
 
         Initialize()
         setupUI()
@@ -82,14 +84,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hideEdits() {
-        originalWordEdit.setVisibility(View.INVISIBLE)
-        translatedWordEdit.setVisibility(View.INVISIBLE)
-        background.setVisibility(View.INVISIBLE)
+        mainViewModel.updateVisibility(View.INVISIBLE)
     }
 
     private fun showEdits() {
-        originalWordEdit.setVisibility(View.VISIBLE)
-        translatedWordEdit.setVisibility(View.VISIBLE)
-        background.setVisibility(View.VISIBLE)
+        mainViewModel.updateVisibility(View.VISIBLE)
     }
 }

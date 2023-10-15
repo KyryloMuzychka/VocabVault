@@ -20,15 +20,15 @@
             android:layout_height="0dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/addButton"
-            android:layout_marginBottom="20px"
+            android:layout_marginBottom="20dp"
             app:layout_constraintVertical_bias="0.0" />
 
         <View
             android:id="@+id/background"
             android:layout_width="wrap_content"
-            android:layout_height="600px"
+            android:layout_height="600dp"
             android:background="#FFFFFF"
-            android:visibility="invisible"
+            android:visibility="@{viewModel.visibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -38,55 +38,60 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/background"
             android:layout_gravity="bottom"
-            android:gravity="start"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
             android:autofillHints="originalWord"
             android:ems="10"
-            android:hint="Original Word"
+            android:gravity="start"
+            android:hint="@{viewModel.originalWordHint}"
             android:imeOptions="actionSend"
             android:inputType="text"
-            android:visibility="invisible"
+            android:minHeight="48dp"
+            android:visibility="@{viewModel.visibility}"
             app:layout_constraintBottom_toTopOf="@+id/translatedWordEdit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_below="@+id/background" />
+            tools:ignore="SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
         <EditText
             android:id="@+id/translatedWordEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/originalWordEdit"
             android:layout_gravity="bottom"
-            android:gravity="start"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
             android:autofillHints="originalWord"
             android:ems="10"
-            android:hint="Translated Word"
+            android:gravity="start"
+            android:hint="@{viewModel.translatedWordHint}"
             android:imeOptions="actionSend"
             android:inputType="text"
-            android:visibility="invisible"
+            android:minHeight="48dp"
+            android:visibility="@{viewModel.visibility}"
             app:layout_constraintBottom_toTopOf="@+id/addButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_below="@+id/originalWordEdit" />
+            tools:ignore="SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
         <Button
             android:id="@+id/addButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:gravity="center"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
+            android:gravity="center"
             android:text="@{viewModel.addText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,VisualLintButtonSize" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
