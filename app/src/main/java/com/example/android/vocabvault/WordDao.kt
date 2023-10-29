@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WordDao {
-
-    // The flow always holds/caches latest version of data. Notifies its observers when the
-    // data has changed.
     @Query("SELECT * FROM word_table ORDER BY originalWord ASC")
     fun getAlphabetizedWords(): Flow<List<Word>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(word: Word)
+
+    @Query("SELECT * FROM word_table WHERE originalWord = :value")
+    suspend fun findWordByValue(value: String): Word?
 
     @Query("DELETE FROM word_table")
     suspend fun deleteAll()

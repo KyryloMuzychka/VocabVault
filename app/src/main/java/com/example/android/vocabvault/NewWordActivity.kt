@@ -8,7 +8,6 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.example.android.vocabvault.R
 
 class NewWordActivity : AppCompatActivity() {
 
@@ -24,8 +23,10 @@ class NewWordActivity : AppCompatActivity() {
             if (TextUtils.isEmpty(originalWordView.text) || TextUtils.isEmpty(translatedWordView.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val word = originalWordView.text.toString()
-                replyIntent.putExtra(EXTRA_REPLY, word)
+                val originalWordText = originalWordView.text.toString()
+                val translatedWordText = translatedWordView.text.toString()
+                replyIntent.putExtra(EXTRA_REPLY, arrayListOf(originalWordText, translatedWordText) )
+
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()

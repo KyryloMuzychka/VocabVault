@@ -33,12 +33,7 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, newWordActivityRequestCode)
         }
 
-        
-        // Add an observer on the LiveData returned by getAlphabetizedWords.
-        // The onChanged() method fires when the observed data changes and the activity is
-        // in the foreground.
         wordViewModel.allWords.observe(owner = this) { words ->
-            // Update the cached copy of the words in the adapter.
             words.let { adapter.submitList(it) }
         }
     }
@@ -47,9 +42,13 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, intentData)
 
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            intentData?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let { reply ->
-                val word = Word(reply, reply)
-                wordViewModel.insert(word)
+            intentData?.getStringArrayListExtra(NewWordActivity.EXTRA_REPLY)?.let { replyArray ->
+                if (replyArray.size == 2) {
+                    val originalWord = replyArray[0]
+                    val translatedWord = replyArray[1]
+                    val word = Word(originalWord, translatedWord)
+                    wordViewModel.insert(word, this)
+                }
             }
         } else {
             Toast.makeText(
