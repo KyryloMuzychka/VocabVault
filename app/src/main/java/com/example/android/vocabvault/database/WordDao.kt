@@ -1,10 +1,10 @@
-package com.example.android.vocabvault
+package com.example.android.vocabvault.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.android.vocabvault.Word
+import com.example.android.vocabvault.database.Word
 import kotlinx.coroutines.flow.Flow
 
 @Dao

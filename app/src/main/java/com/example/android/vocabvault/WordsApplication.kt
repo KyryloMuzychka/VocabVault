@@ -2,6 +2,8 @@
 package com.example.android.vocabvault
 
 import android.app.Application
+import com.example.android.vocabvault.database.WordRepository
+import com.example.android.vocabvault.database.WordRoomDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 

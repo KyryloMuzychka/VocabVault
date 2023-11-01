@@ -1,5 +1,5 @@
 
-package com.example.android.vocabvault
+package com.example.android.vocabvault.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

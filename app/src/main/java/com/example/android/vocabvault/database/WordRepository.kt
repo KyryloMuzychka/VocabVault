@@ -1,9 +1,11 @@
 
-package com.example.android.vocabvault
+package com.example.android.vocabvault.database
 
 import android.content.Context
 import android.widget.Toast
 import androidx.annotation.WorkerThread
+import com.example.android.vocabvault.database.Word
+import com.example.android.vocabvault.database.WordDao
 import kotlinx.coroutines.flow.Flow
 
 class WordRepository(private val wordDao: WordDao) {

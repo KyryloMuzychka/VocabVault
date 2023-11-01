@@ -1,4 +1,4 @@
-package com.example.android.vocabvault
+package com.example.android.vocabvault.database
 
 import android.content.Context
 import androidx.room.Database
