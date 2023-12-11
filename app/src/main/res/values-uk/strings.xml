@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Словник</string>
+    <string name="action_settings">Налаштування</string>
+    <string name="hint_word">Слово...</string>
+    <string name="button_save">Зберегти</string>
+    <string name="empty_not_saved">Слово не вдалося зберегти. Поля пусті</string>
+    <string name="add_word">Додати слово</string>
+</resources>
